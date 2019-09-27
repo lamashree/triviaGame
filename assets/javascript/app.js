@@ -1,3 +1,7 @@
+
+$(document).ready(function() {
+
+
 var quizQuestion = [
     {
         question: "who is the first president of USA?",
@@ -50,7 +54,7 @@ var quizQuestion = [
         correctAnswer: "April 17, 1961"
     }
 ]
-console.log(quizQuestion);
+// console.log(quizQuestion);
 //initail values//
 var counter = 30;
 var currentQuestion = 0;
@@ -58,24 +62,86 @@ var score = 0;
 var lost = 0;
 var timer;
 
-console.log($);
+// if the timer is over, then go to the next question//
+function nextQuestion() {
+    var isQuestionOver = (quizQuestion.length - 1) === currentQuestion;
+    if (isQuestionOver) {
+        console.log("The game is over");
+    }
+    currentQuestion++;
+    loadQustion();
+}
+// start a 30 second timer for user to respond or choose an answer to each question//
+function timeUp() {
+    clearInterval(timer);
+    lost++;
+    nextQuestion();
+}
+
+function countDown() {
+    counter--;
+    $("#timer").html("timer;" + counter)
+    if (counter === 0) {
+        timeUp();
+    }
+}
+// console.log($);
+// Display the quetions and the choices to the browser//
 function loadQustion() {
+    counter = 5;
+    timer = setInterval(countDown, 1000);
     const question = quizQuestion[currentQuestion].question;
     const choices = quizQuestion[currentQuestion].choices;
     $("#timer").html("timer:" + counter);
     $("#Game").html("<h4>" + question + "</h4>");
     var $choicesElements = $(loadChoices(choices));
     $("#Game").append($choicesElements);
-    console.log(loadQustion);
+
+    // console.log(loadQustion);
 }
 
 function loadChoices(choices) {
     var result = " ";
     for (var i = 0; i < choices.length; i++) {
-        result += '<p class ="choice" data-answer="' + choices[i] + '">' + choices[i] +'</p>';
-       
+        result += '<p class ="choice" data-answer="' + choices[i] + '">' + choices[i] + '</p>';
+
     }
     return result;
 }
+$(document).on("click", ".choice", function () {
+    clearInterval(timer);
+    var selectAnswer = $(this).attr("data-answer");
+    var correctAnswer = quizQuestion[currentQuestion].correctAnswer;
+    console.log(correctAnswer);
+    if (correctAnswer === selectAnswer) {
+        score++;
+        console.log("winss!!!");
+        nextQuestion();
+    }
+    else {
+        lost++
+        console.log("you lost");
+        nextQuestion();
+    }
+
+    console.log("yapp");
+});
+
+function Display() {
+    var result = 
+        $("#game").html(result);
+}
+
+
 loadQustion();
-loadChoices();
+
+//loadChoices();
+
+$(".button").on("click", function() {
+    console.log("button is working");
+    $(".button").remove();
+    $("#timer").html(counter);
+    // loadQustion();
+})
+
+});
