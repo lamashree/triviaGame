@@ -9,8 +9,8 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src="assets/javascript/app.js"></script>
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="assets/javascript/app.js"></script>
 
 
     <title>Trivia Game</title>
@@ -19,13 +19,29 @@
 <body>
 
     <div class="container">
-    <h1>Trivia Game</h1>
-    <button class="button">Start</button>
+        <h1>Trivia Game</h1>
+        <button class="button">Start Game</button>
     </div>
-    
-    <h2 id ="timer"></h2>
-    <div id ="Game"></div>
-    <p class= "display result">Result</p>
+    <div class="empty-container">
+        <div class="row">
+            <div class="col-md-2">
+                <h2 id="Timer"></h2>
+                <div id="Game">
+                    <div class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary active">
+                            <input type="checkbox" checked autocomplete="off"> Checked
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="display result">Result
+        <p id="total-right">Total Right</p>
+        <p id="total-wrong">Total Wrong</p>
+        <p id="√">Totat</p>
+    </div>
+
 </body>
 
 </html>
