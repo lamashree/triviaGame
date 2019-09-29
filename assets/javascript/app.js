@@ -73,7 +73,7 @@ $(document).ready(function () {
             Displayresult();
         } else {
             currentQuestion++;
-            loadQustion();
+            loadQuestion();
         }
     }
     // start a 30 second timer for user to respond or choose an answer to each question//
@@ -81,7 +81,7 @@ $(document).ready(function () {
         clearInterval(timer);
         lost++;
         nextQuestion();
-    }
+    };
 
     function countDown() {
         counter--;
@@ -92,7 +92,7 @@ $(document).ready(function () {
     }
     // console.log($);
     // Display the quetions and the choices to the browser//
-    function loadQustion() {
+    function loadQuestion() {
         counter = 5;
         timer = setInterval(countDown, 1000);
         const question = quizQuestion[currentQuestion].question;
@@ -101,7 +101,7 @@ $(document).ready(function () {
         $("#Game").html("<h4>" + question + "</h4>");
         var $choicesElements = $(loadChoices(choices));
         $("#Game").append($choicesElements);
-
+        // loadRemainingQUestions ();
         // console.log(loadQustion);
     }
 
@@ -112,7 +112,8 @@ $(document).ready(function () {
 
         }
         return result;
-    }
+    }; 
+
     $(document).on("click", ".choice", function () {
         clearInterval(timer);
         var selectAnswer = $(this).attr("data-answer");
@@ -133,37 +134,41 @@ $(document).ready(function () {
     });
 
     function Displayresult() {
-        // $("#total-right").html("total-right:", score);
-        // $("#total-wrong").html("total-wrong:", lost)
-        // $("#total").html("total:", question.length)
-
-        var result = '<p> you get: '+ score + ' questions(s)right</p>' + 
-      '<p> you missed: '+ lost + ' questions(s)right</p>' +
-       '<p>total questions: ' + quizQuestion.length + ' questions(s)right</p>' +
-       '<button>Reset Game + </button>'
+        var result = '<p> Total Right: ' + score + ' questions(s)right</p>' +
+            '<p> Total Wrong ' + lost + ' questions(s)right</p>' +
+            '<p>total questions: ' + quizQuestion.length + ' questions(s)right</p>' +
+            '<button class="reset-button">Reset Game </button>'
         $("#Game").html(result);
 
-    }
+    };
+    // loadQuestion();
+    $(".button").on("click", function () {
+        console.log("button is working");
+        $(".button").remove();
+        $("#Timer").html(counter);
+        loadQuestion();
+        // loadQustion();
+    })
 
+});;
 
-        $("#game").html(result);
+$(document).on("click", ".reset-button", function () {
+    counter = 5;
+    currentQuestion = 0;
+    score = 0;
+    lost = 0;
+    timer = 0;
+    result = 0;
+    loadQuestion();
 
+    // console.log("button is working ");
+    // $("#Game").html(this)
+});;
 
+ function loadRemainingQUestions(){
+     var remainingQuestion = quizQuestion.length - (currentQuestion + 1);
+     var totalquestion = quizQuestion.length;
+     return ("remaining Question:" + remainingQuestion/totalquestion);
+     };
 
-        loadQustion();
-
-        //loadChoices();
-
-        $(".button").on("click", function () {
-            console.log("button is working");
-            $(".button").remove();
-            $("#Timer").html(counter);
-            // loadQustion();
-        })
-
-    });
-    function reset (){
-        Timer = 0;
-        loadQustion();
-    }
-// $(document).on("click", ".choice", function () {
+    //  loadQustion();
