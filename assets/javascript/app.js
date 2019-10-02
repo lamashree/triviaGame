@@ -93,7 +93,7 @@ $(document).ready(function () {
     // console.log($);
     // Display the quetions and the choices to the browser//
     function loadQuestion() {
-        counter = 5;
+        counter = 30;
         timer = setInterval(countDown, 1000);
         const question = quizQuestion[currentQuestion].question;
         const choices = quizQuestion[currentQuestion].choices;
@@ -150,25 +150,25 @@ $(document).ready(function () {
         // loadQustion();
     })
 
-});;
-
-$(document).on("click", ".reset-button", function () {
-    counter = 5;
-    currentQuestion = 0;
-    score = 0;
-    lost = 0;
-    timer = 0;
-    result = 0;
-    loadQuestion();
-
-    // console.log("button is working ");
-    // $("#Game").html(this)
-});;
-
- function loadRemainingQUestions(){
-     var remainingQuestion = quizQuestion.length - (currentQuestion + 1);
-     var totalquestion = quizQuestion.length;
-     return ("remaining Question:" + remainingQuestion/totalquestion);
+    $(document).on("click", ".reset-button", function () {
+        counter = 30;
+        currentQuestion = 0;
+        score = 0;
+        lost = 0;
+        timer = 0;
+        result = 0;
+        loadQuestion();
+    
+        // console.log("button is working ");
+        // $("#Game").html(this)
+    });
+    
+     function loadRemainingQUestions(){
+         var remainingQuestion = quizQuestion.length - (currentQuestion + 1);
+         var totalquestion = quizQuestion.length;
+         return ("remaining Question:" + remainingQuestion/totalquestion);
      };
 
-    //  loadQustion();
+});
+
+//loadQustion();
